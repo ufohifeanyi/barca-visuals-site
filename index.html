@@ -176,12 +176,12 @@ const SITE = {
    Only add images that you made yourself or have the right to use.
 */
 const WALLPAPERS = [
-  { title: "Blaugrana Glow",        category: "Abstract", device: "Phone",   image: "wall-blaugrana-glow.jpg",   date: "2026-10-09" },
-  { title: "The Number Ten",        category: "Numbers",  device: "Phone",   image: "wall-number-ten.jpg",       date: "2026-10-09" },
-  { title: "Pitch Blueprint",       category: "Matchday", device: "Phone",   image: "wall-pitch-blueprint.jpg",  date: "2026-10-09" },
-  { title: "Matchday: Game On",     category: "Matchday", device: "Phone",   image: "wall-matchday.jpg",         date: "2026-10-09" },
-  { title: "Night Under the Lights",category: "Abstract", device: "Phone",   image: "wall-night-lights.jpg",     date: "2026-10-09" },
-  { title: "Next Generation",       category: "Youth",    device: "Desktop", image: "wall-next-generation.jpg",  date: "2026-10-09" }
+  { title: "Blaugrana Glow",        category: "Abstract", device: "Phone",   image: "1ac3cb24-0aa8-4773-ba6c-66e890206ebf(1).jpg",   date: "2026-10-09" },
+  { title: "The Number Ten",        category: "Numbers",  device: "Phone",   image: "IMG-20261010-WA0005.jpg",       date: "2026-10-09" },
+  { title: "Pitch Blueprint",       category: "Matchday", device: "Phone",   image: "IMG-20261010-WA0006.jpg",  date: "2026-10-09" },
+  { title: "Matchday: Game On",     category: "Matchday", device: "Phone",   image: "IMG-20261010-WA0007.jpg",         date: "2026-10-09" },
+  { title: "Night Under the Lights",category: "Abstract", device: "Phone",   image: "IMG-20261010-WA0008.jpg",     date: "2026-10-09" },
+  { title: "Next Generation",       category: "Youth",    device: "Desktop", image: "IMG-20261010-WA0009.jpg",  date: "2026-10-09" }
 ];
 
 /* ---------- ARTICLES ----------
@@ -250,6 +250,7 @@ const ARTICLES = [
    Prefer official club or league channels, or your own videos.
 */
 const VIDEOS = [
+  { title: "All the internationals are back | FC Barcelona training session", id: "s0Y932TvIe8", note: "Source: FC Barcelona (official YouTube channel)", date: "2026-10-09" }
 ];
 
 </script>
@@ -296,7 +297,7 @@ const VIDEOS = [
       ? '<img src="' + esc(w.image) + '" alt="' + esc(w.title) + '">'
       : '<div class="ph" style="background:' + GRADS[i % GRADS.length] + '">' + esc(w.title) + "</div>";
     var action = w.image
-      ? '<a class="btn" href="' + esc(w.image) + '" download>Download HD</a>'
+      ? '<a class="btn" href="' + esc(w.image) + '" download>Download</a>'
       : "<p>Placeholder card. Add a real image in the data section to enable download.</p>";
     lb.innerHTML = '<button class="x" aria-label="Close">&times;</button>' + media +
       "<strong>" + esc(w.title) + "</strong>" + action +
