@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://barca-visuals-hub.blaugranavisuals.workers.dev/sitemap.xml

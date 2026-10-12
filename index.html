@@ -126,7 +126,7 @@ footer.site .links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;m
 .vid .vt strong{display:block}
 .vid .vt small{color:var(--muted)}
 /* article images & embeds */
-.card .thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin-bottom:12px}
+.card .thumb{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;border-radius:10px;margin-bottom:12px}
 .hero-img{margin:0 0 22px}
 .hero-img img{width:100%;border-radius:var(--radius)}
 .hero-img figcaption{color:var(--muted);font-size:.8rem;margin-top:6px}
@@ -187,7 +187,7 @@ const WALLPAPERS = [
 
 /* ---------- ARTICLES ----------
    Copy one block, change the text, keep the commas. "slug" is the short name used in the link
-   (lowercase, hyphens, no spaces). "content" is HTML: use <p>, <h2>, <ul><li>, <a href="">.
+   (lowercase, hyphens, no spaces). Each article is its own page file named slug.html.
    Newest first is best.
 
    OPTIONAL extras per article:
@@ -201,47 +201,19 @@ const WALLPAPERS = [
 */
 const ARTICLES = [
   {
-    slug: "how-to-set-wallpaper-on-your-phone",
-    title: "How to Set Any Wallpaper on Your Phone (Android & iPhone)",
-    date: "2026-10-09",
-    category: "Guides",
-    excerpt: "Downloaded a wallpaper and not sure how to apply it? Here is the quick way on both Android and iPhone.",
-    content: `
-      <p>Got a new wallpaper from our gallery? Setting it takes less than a minute.</p>
-      <h2>On Android</h2>
-      <ul>
-        <li>Download the image from the wallpaper page. It saves to your Gallery or Photos app.</li>
-        <li>Open the image, tap the three dots (&#8942;), then choose <strong>Set as wallpaper</strong>.</li>
-        <li>Pick <strong>Home screen</strong>, <strong>Lock screen</strong> or <strong>Both</strong>, then confirm.</li>
-      </ul>
-      <h2>On iPhone</h2>
-      <ul>
-        <li>Download the image, then open it in Photos.</li>
-        <li>Tap the Share icon and choose <strong>Use as Wallpaper</strong>.</li>
-        <li>Pinch to adjust the position, then tap <strong>Add</strong>.</li>
-      </ul>
-      <h2>Tips for a sharp result</h2>
-      <ul>
-        <li>Choose phone-sized (tall) wallpapers for your phone and wide ones for desktop.</li>
-        <li>Turn off "Perspective Zoom" on iPhone if the image looks cropped.</li>
-      </ul>
-      <p>Browse more in the <a href="#/wallpapers">wallpaper gallery</a>.</p>`
+    "slug": "jules-kounde-profile",
+    "title": "Jules Koundé's Barça Story in Numbers",
+    "date": "2026-10-12",
+    "category": "Player Profile",
+    "excerpt": "194 games, three La Liga titles and a Copa del Rey final winner. A quick profile of Jules Koundé, with the stats on one card.",
+    "image": "jules-kounde-stat-card.jpg"
   },
   {
-    slug: "welcome-to-the-site",
-    title: "Welcome: What You Will Find Here",
-    date: "2026-10-08",
-    category: "News",
-    excerpt: "A quick tour of the wallpapers, edits and stories we publish.",
-    content: `
-      <p>This is a fan-made home for HD wallpapers, matchday graphics and stories about young talents.</p>
-      <h2>What to expect</h2>
-      <ul>
-        <li>New wallpapers and edits throughout the week.</li>
-        <li>Articles and guides for fans.</li>
-        <li>Updates linked from our Pinterest boards.</li>
-      </ul>
-      <p>Replace this article with your own introduction, written in your own words.</p>`
+    "slug": "how-to-set-wallpaper-on-your-phone",
+    "title": "How to Set Any Wallpaper on Your Phone (Android & iPhone)",
+    "date": "2026-10-09",
+    "category": "Guides",
+    "excerpt": "Downloaded a wallpaper and not sure how to apply it? Here is the quick way on both Android and iPhone."
   }
 ];
 
@@ -324,7 +296,7 @@ const VIDEOS = [
     });
   }
   function articleCard(a) {
-    return '<a class="card" href="#/article/' + encodeURIComponent(a.slug) + '">' +
+    return '<a class="card" href="/' + encodeURIComponent(a.slug) + '">' +
       (a.image ? '<img class="thumb" loading="lazy" src="' + esc(a.image) + '" alt="">' : "") +
       '<div class="tag">' + esc(a.category) + "</div><h3>" + esc(a.title) + "</h3><p>" + esc(a.excerpt) +
       '</p><div class="date">' + fmtDate(a.date) + "</div></a>";
@@ -447,7 +419,7 @@ const VIDEOS = [
 
   function viewAbout() {
     app.innerHTML = '<main class="page"><h1>About</h1>' +
-      "<p>This is a fan-made site sharing football wallpapers, edits and articles. Edit this page and write your own story: who you are, why you make these visuals, and how often you post.</p>" +
+      "<p>Barça Visuals is a fan-made site for Barcelona supporters. We design original wallpapers and graphics, share videos from official channels and write short, sourced articles about the players and the club. New wallpapers and articles are added regularly, and you can follow along on Pinterest.</p>" +
       "<h2>Copyright &amp; disclaimer</h2>" +
       "<p>This site is an independent fan project. It is not affiliated with, authorised or endorsed by any football club, player, league or governing body. Club names, badges and player names remain the property of their respective owners.</p>" +
       "<p>Wallpapers and graphics published here are original edits or are used with the right to do so. If you own content shown here and want it credited or removed, contact us and we will act promptly.</p>" +
@@ -470,7 +442,7 @@ const VIDEOS = [
     if (v === "wallpapers") viewWallpapers();
     else if (v === "videos") viewVideos();
     else if (v === "articles") viewArticles();
-    else if (v === "article") viewArticle(decodeURIComponent(parts[1] || ""));
+    else if (v === "article") { location.replace("/" + (parts[1] || "")); return; }
     else if (v === "about") viewAbout();
     else { v = "home"; viewHome(); }
     document.querySelectorAll("#mainNav a").forEach(function (a) {
